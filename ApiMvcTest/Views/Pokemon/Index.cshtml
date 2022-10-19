@@ -1,0 +1,86 @@
+﻿
+@model Pokemon
+<style>
+    .card-header {
+        font-family: "Press Start 2P";
+        font-size: 20px;
+        text-align: center;
+    }
+
+    h5 {
+        font-family: "Press Start 2P";
+        font-size: 10px;
+        font-weight: bold;
+    }
+
+    .form-poke {
+        font-family: "Press Start 2P";
+    }
+
+    img {
+        height: 300px;
+        width: auto;
+    }
+</style>
+
+<div class="form-poke container justify-content-center bg bg-dark p-3 mt-5 border border-danger rounded border shadow-lg">
+
+    <form asp-controller="Pokemon" asp-action="Index">
+
+        <input class="form-control" name="searchString" placeholder="Enter Pokemon Name" />
+        <button class="btn btn-warning mt-3" id="submit" name="submit" type="submit" style="font-weight:bold;" value="Search">Search</button>
+    </form>
+
+</div>
+<div class="d-flex justify-content-center">
+    <div class="card bg bg-light border-danger mb-3 mt-5 rounded shadow-lg" style="max-width: 25rem;">
+        <div class="card-header">Number: @Model.id</div>
+        <div class="card-body">
+            <div class="d-flex align-items-center justify-content-between">
+                <h5 class="card-title text-danger">Name: <span class="text-dark">@char.ToUpper(Model.name[0])@Model.name.Substring(1)</span></h5>
+                <h5 class=" text-danger">Experience: <span class="text-dark">@Model.base_experience</span></h5>
+            </div>
+            <div class="d-flex align-items-center justify-content-between">
+                <h5 class="text-danger">
+                    Height: <span class="text-dark">@Model.height<span>ft</span></span>
+                </h5>
+                <h5 class="text-danger">Weight: <span class="text-dark">@Model.weight<span>lbs</span></span></h5>
+            </div>
+
+            <img src="@Model.sprite" class="card-img-top border-warning rounded shadow" alt="..." />
+            <p class="card-text">
+                <div class="d-flex">
+                    <h5 class="text-danger">Type:&nbsp;</h5>
+                    <div class="d-inline-flex">
+                        @foreach (var type in Model.types)
+                        {
+                            <h5>@char.ToUpper(@type[0])@type.Substring(1).&nbsp;</h5>
+                        }
+                    </div>
+
+                </div>
+
+                <div class="d-flex">
+                    <h5 class="text-danger">Abilities:&nbsp;</h5>
+                    <div class="d-inline-flex">
+                        @foreach (var ability in Model.abilities)
+                        {
+                            <h5>@char.ToUpper(@ability[0])@ability.Substring(1).&nbsp;</h5>
+                        }
+                    </div>
+                </div>
+
+                <div class="d-flex">
+                    <h5 class="text-danger">Moves:&nbsp;</h5>
+                    <div class="d-inline-flex">
+                        @foreach (var move in Model.moves.Take(2))
+                        {
+                            <h5>@char.ToUpper(@move[0])@move.Substring(1).&nbsp;</h5>
+                        }
+                    </div>
+                </div>
+            </p>
+
+        </div>
+    </div>
+</div>
