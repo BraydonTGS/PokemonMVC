@@ -13,6 +13,7 @@ namespace ApiMvcTest.Controllers
     public class PokemonController : Controller
     {
         private readonly IPokemonApiResponse _response;
+
         public PokemonController(IPokemonApiResponse response)
         {
             _response = response;
