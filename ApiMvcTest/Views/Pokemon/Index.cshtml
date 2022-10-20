@@ -63,7 +63,7 @@
                 <div class="d-flex">
                     <h5 class="text-danger">Abilities:&nbsp;</h5>
                     <div class="d-inline-flex">
-                        @foreach (var ability in Model.abilities)
+                        @foreach (var ability in Model.abilities.Take(2))
                         {
                             <h5>@char.ToUpper(@ability[0])@ability.Substring(1).&nbsp;</h5>
                         }
